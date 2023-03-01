@@ -168,7 +168,7 @@ class User
     /**
      * Get the value of full_name
      */ 
-    public function getFull_name()
+    public function getFullName()
     {
         return $this->full_name;
     }
@@ -178,7 +178,7 @@ class User
      *
      * @return  self
      */ 
-    public function setFull_name($full_name)
+    public function setFullName($full_name)
     {
         $this->full_name = $full_name;
 

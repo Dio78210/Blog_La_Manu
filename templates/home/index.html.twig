@@ -3,10 +3,33 @@
 
 {# surcharger des block. modifier ce qu'il y as pas defaut #}
 
-{% block title %} 
-    Accueil 
+{% block title %}
+Blog La Manu
 {% endblock %}
 
 {% block body %}
-    <h1>Bienvenue sur la page home</h1>
+
+<div class="articles" id="articles">
+    {% for article in articles %}
+    <div class="article-item">
+        <div class="article-image">
+            <img src={{article.imageUrl}} width="300" height="300" alt="Image de l'article : {{article.title }}">
+        </div>
+        <div class="article-details">
+            <div class="article-author-details">
+                <div class="article-author-picture">
+                    <img src={{article.author.profile.picture}} width="50" height="50" alt="image de profile de {{article.author.fullname}}">
+                </div>
+            </div>
+            <div class="article-content-details">
+                <h2 class="article-title">{{article.title}} </h2>
+                <div class="article-createdAt">
+                    {{article.fromNow}}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
 {% endblock %}

@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use EsperoSoft\DateFormat\DateFormat;
 use App\Repository\ArticleRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -54,6 +55,8 @@ class Article
      * @ORM\Column(type="datetime_immutable", nullable=true)
      */
     private $updatedAt;
+
+    private string $fromNow;
 
 
     public function __construct()
@@ -160,5 +163,14 @@ class Article
         $this->updatedAt = $updatedAt;
 
         return $this;
+    }
+
+    /**
+     * Get the value of fromNow
+     * @return string
+     */ 
+    public function getFromNow()
+    {
+        return DateFormat::fromNow($this->createdAt,"fr-fr");
     }
 }

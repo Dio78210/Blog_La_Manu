@@ -10,6 +10,8 @@
         "doctrine/doctrine-bundle": "^2.8",
         "doctrine/doctrine-migrations-bundle": "^3.2",
         "doctrine/orm": "^2.14",
+        "espero-soft/dateformat": "dev-master",
+        "espero-soft/faker": "dev-master",
         "fzaninotto/faker": "^1.9",
         "sensio/framework-extra-bundle": "^6.2",
         "symfony/console": "5.4.*",

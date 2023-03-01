@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a57faa204b44aa48d9aef4def7d4e63d",
+    "content-hash": "869fee642b9838a91801256902995c81",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1374,6 +1374,106 @@
                 "source": "https://github.com/doctrine/sql-formatter/tree/1.1.3"
             },
             "time": "2022-05-23T21:33:49+00:00"
+        },
+        {
+            "name": "espero-soft/dateformat",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/espero-soft/dateformat.git",
+                "reference": "aba79f657f113c49a0947dd4169f65dbb13410b9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/espero-soft/dateformat/zipball/aba79f657f113c49a0947dd4169f65dbb13410b9",
+                "reference": "aba79f657f113c49a0947dd4169f65dbb13410b9",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "EsperoSoft\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Espero-Soft Informatiques",
+                    "email": "contact@espero-soft.com"
+                }
+            ],
+            "description": "This Php library will help you format your dates in number of years, months, days, hours, minutes and seconds.",
+            "keywords": [
+                "akpoli",
+                "date",
+                "dateformat",
+                "espero",
+                "espero-soft",
+                "moment",
+                "mudey"
+            ],
+            "support": {
+                "issues": "https://github.com/espero-soft/dateformat/issues",
+                "source": "https://github.com/espero-soft/dateformat/tree/master"
+            },
+            "time": "2022-09-19T18:03:07+00:00"
+        },
+        {
+            "name": "espero-soft/faker",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/espero-soft/Faker.git",
+                "reference": "69ccc10ef1de5c1820acaf0c0dbb407c0eeac399"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/espero-soft/Faker/zipball/69ccc10ef1de5c1820acaf0c0dbb407c0eeac399",
+                "reference": "69ccc10ef1de5c1820acaf0c0dbb407c0eeac399",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "EsperoSoft\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Espero-Soft Informatiques",
+                    "email": "contact@espero-soft.com"
+                }
+            ],
+            "description": "Faker is a PHP library that generates fake data for you.",
+            "keywords": [
+                "akpoli",
+                "data",
+                "espero",
+                "espero-soft",
+                "faker",
+                "fixtures",
+                "mudey"
+            ],
+            "support": {
+                "issues": "https://github.com/espero-soft/Faker/issues",
+                "source": "https://github.com/espero-soft/Faker/tree/master"
+            },
+            "time": "2022-10-07T10:35:02+00:00"
         },
         {
             "name": "friendsofphp/proxy-manager-lts",
@@ -5202,7 +5302,10 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "espero-soft/dateformat": 20,
+        "espero-soft/faker": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
