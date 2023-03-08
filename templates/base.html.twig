@@ -17,9 +17,25 @@
 		{% endblock %}
 	</head>
 	<body>
-		<header>
-			<h2>Blog</h2>
+		<header class="flex aic">
+			<a href="/"><h2>Blog</h2></a>
+			<nav>
+				<ul class="nav-bar flex aic">
+					<li class="nav-item">About</li>
+						<li class="nav-item down"><a href="">Categories</a>
+							<ul class="nav-bar">
+								{% for category in categories %}
+								<li class="nav-item"> <a href="/category/{{category.slug}}">{{ category.name}}
+								</a>({{category.articles| length}}
+								articles)</li>
+								{% endfor %}
+							</ul>
+						</li>
+					<li class="nav-item">Contact</li>
+				</ul>
+			</nav>
 		</header>
+		{% block slider %}{% endblock %}
 		<div class="container"> 
             {% block body %}{% endblock %}
 		</div>

@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Cocur\Slugify\Slugify;
 use App\Repository\CategoryRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -18,6 +19,11 @@ class Category
      * @ORM\Column(type="integer")
      */
     private $id;
+
+    /**
+     * @orm\column(type="string", length=255, nullable= false)
+     */
+    private $slug;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -121,6 +127,8 @@ class Category
     {
         $this->name = $name;
 
+        $this->setSlug((new Slugify())->slugify($this->name));
+
         return $this;
     }
 
@@ -144,6 +152,26 @@ class Category
     public function setUpdatedAt(\DateTimeImmutable $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of slug
+     */ 
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * Set the value of slug
+     *
+     * @return  self
+     */ 
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
 
         return $this;
     }

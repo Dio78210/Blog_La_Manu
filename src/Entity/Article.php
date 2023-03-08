@@ -2,11 +2,12 @@
 
 namespace App\Entity;
 
-use EsperoSoft\DateFormat\DateFormat;
-use App\Repository\ArticleRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use Cocur\Slugify\Slugify;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\ArticleRepository;
+use EsperoSoft\DateFormat\DateFormat;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity(repositoryClass=ArticleRepository::class)
@@ -24,6 +25,11 @@ class Article
      * @ORM\Column(type="string", length=255)
      */
     private $title;
+
+    /**
+     * @orm\column(type="string", length=255, nullable= false)
+     */
+    private $slug;
 
     /**
      * @ORM\Column(type="text")
@@ -77,6 +83,8 @@ class Article
     public function setTitle(string $title): self
     {
         $this->title = $title;
+
+        $this->setSlug((new Slugify())->slugify($this->title));
 
         return $this;
     }
@@ -172,5 +180,25 @@ class Article
     public function getFromNow()
     {
         return DateFormat::fromNow($this->createdAt,"fr-fr");
+    }
+
+    /**
+     * Get the value of slug
+     */ 
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * Set the value of slug
+     *
+     * @return  self
+     */ 
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
     }
 }

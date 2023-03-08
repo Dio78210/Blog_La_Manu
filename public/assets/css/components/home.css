@@ -29,3 +29,15 @@
 .articles .article-item .article-title{
     font-size: 1.1rem;
 }
+
+.article-author-picture img{
+    width: 50px;
+    height: 50px;
+    border-radius: 100px;
+    border: 4px solid var(--main-color);
+    box-shadow: 2px 2px 13px #ccc;
+}
+.articles-infos{
+    text-align: center;
+    padding: 10px 0;
+}

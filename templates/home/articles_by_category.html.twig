@@ -7,22 +7,11 @@
 Blog La Manu
 {% endblock %}
 
-{% block slider %}
-
-    <div class="slider">
-        <div class="slider-content">
-            <h2>Bienvenue sur le blog La Manu</h2>
-            <p>Plusieurs article publié chaque jour !</p>
-            <a href="#articles" target="_blank">
-                <button class="btn">consulter</button>
-            </a>
-        </div>
-    </div>
-
-{% endblock %}
 {% block body %}
-
-    <div class="articles" id="articles">
+    <div class="articles-infos">
+        <p>Article de la categorie: <strong>{{category.name}}</strong></p>
+    </div>
+    <div class="articles">
         {% for article in articles %}
         <a href="/article/{{article.slug}}" class="article-item">
             <div class="article-image">
