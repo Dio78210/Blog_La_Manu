@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ContactController!{% endblock %}
+
+{% block body %}
+{{form_start(contact)}}
+
+{% for message in app.session.flashbag.get("message") %}
+    <div class="alert {{ app.session.get("status")}} " >{{ message }}</div>
+{% endfor %}
+
+{{form_end(contact)}}
+
+{% endblock %}

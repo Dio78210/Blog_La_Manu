@@ -2,15 +2,21 @@
 
 namespace App\Entity;
 
-use App\Repository\UserRepository;
+
+
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\UserRepository;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
  */
-class User
+class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     /**
      * @ORM\Id
@@ -24,14 +30,19 @@ class User
      */
     private $full_name;
 
-
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=180, unique=true)
      */
     private $email;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="json")
+     */
+    private $roles = [];
+
+    /**
+     * @var string The hashed password
+     * @ORM\Column(type="string")
      */
     private $password;
 
@@ -50,12 +61,10 @@ class User
      */
     private $adresses;
 
-     /**
+    /**
      * @ORM\OneToOne(targetEntity=Profile::class, mappedBy="profile", cascade={"persist", "remove"})
      */
     private $profile;
-
-
 
     public function __construct()
     {
@@ -68,7 +77,6 @@ class User
         return $this->id;
     }
 
-    
     public function getEmail(): ?string
     {
         return $this->email;
@@ -81,7 +89,47 @@ class User
         return $this;
     }
 
-    public function getPassword(): ?string
+    /**
+     * A visual identifier that represents this user.
+     *
+     * @see UserInterface
+     */
+    public function getUserIdentifier(): string
+    {
+        return (string) $this->email;
+    }
+
+    /**
+     * @deprecated since Symfony 5.3, use getUserIdentifier instead
+     */
+    public function getUsername(): string
+    {
+        return (string) $this->email;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
+    {
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
+
+    /**
+     * @see PasswordAuthenticatedUserInterface
+     */
+    public function getPassword(): string
     {
         return $this->password;
     }
@@ -93,12 +141,44 @@ class User
         return $this;
     }
 
-    public function getCreatedAt(): ?\datetimeImmutable
+    /**
+     * Returning a salt is only needed, if you are not using a modern
+     * hashing algorithm (e.g. bcrypt or sodium) in your security.yaml.
+     *
+     * @see UserInterface
+     */
+    public function getSalt(): ?string
+    {
+        return null;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials()
+    {
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
+    }
+
+    public function getFullName(): ?string
+    {
+        return $this->full_name;
+    }
+
+    public function setFullName(string $full_name): self
+    {
+        $this->full_name = $full_name;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeImmutable
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\datetimeImmutable $createdAt): self
+    public function setCreatedAt(\DateTimeImmutable $createdAt): self
     {
         $this->createdAt = $createdAt;
 
@@ -165,43 +245,20 @@ class User
         return $this;
     }
 
-    /**
-     * Get the value of full_name
-     */ 
-    public function getFullName()
-    {
-        return $this->full_name;
-    }
-
-    /**
-     * Set the value of full_name
-     *
-     * @return  self
-     */ 
-    public function setFullName($full_name)
-    {
-        $this->full_name = $full_name;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of profile
-     */ 
-    public function getProfile()
+    public function getProfile(): ?Profile
     {
         return $this->profile;
     }
 
-    /**
-     * Set the value of profile
-     *
-     * @return  self
-     */ 
-    public function setProfile($profile)
+    public function setProfile(?Profile $profile): self
     {
+        // unset the owning side of the relation if necessary
+        if ($profile === null && $this->profile !== null) {
+            $this->profile->setProfile(null);
+        }
+
         // set the owning side of the relation if necessary
-        if ($profile->getProfile() !== $this) {
+        if ($profile !== null && $profile->getProfile() !== $this) {
             $profile->setProfile($this);
         }
 
