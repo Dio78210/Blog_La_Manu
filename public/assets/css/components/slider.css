@@ -1,6 +1,6 @@
 .slider{
     height: 600px;
-    background-image: url("../images/slider.jpg.url");
+    background-image: url("../../images/slider.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     display: flex;

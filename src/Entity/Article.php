@@ -41,6 +41,8 @@ class Article
      */
     private $imageUrl;
 
+    private string $imageFile;
+
     /**
      * @ORM\ManyToMany(targetEntity=Category::class, inversedBy="articles")
      */
@@ -198,6 +200,26 @@ class Article
     public function setSlug($slug)
     {
         $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of imageFile
+     */ 
+    public function getImageFile()
+    {
+        return $this->imageFile;
+    }
+
+    /**
+     * Set the value of imageFile
+     *
+     * @return  self
+     */ 
+    public function setImageFile($imageFile)
+    {
+        $this->imageFile = $imageFile;
 
         return $this;
     }

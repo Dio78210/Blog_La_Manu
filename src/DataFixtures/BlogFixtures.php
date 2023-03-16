@@ -17,60 +17,69 @@ class BlogFixtures extends Fixture
     {
         $faker = new Faker();
 
-        $users = [];
+        // $users = [];
 
-        for ($i=0; $i < 100; $i++) { 
+        // for ($i=0; $i < 100; $i++) { 
 
-            $user = (new User())->setFullName($faker->full_name())
-            ->setEmail($faker->email())
-            ->setPassword(sha1("azertyuiop"))
-            ->setCreatedAt($faker->dateTimeImmutable());
+        //     $user = (new User())->setFullName($faker->full_name())
+        //     ->setEmail($faker->email())
+        //     ->setPassword(sha1("azertyuiop"))
+        //     ->setCreatedAt($faker->dateTimeImmutable());
 
-            $address = (new Adresse())->setStreet($faker->streetAddress())
-            ->setCodePostal($faker->codepostal())
-            ->setCity($faker->city())
-            ->setCountry($faker->country())
-            ->setCreatedAt($faker->dateTimeImmutable());
+        //     $address = (new Adresse())->setStreet($faker->streetAddress())
+        //     ->setCodePostal($faker->codepostal())
+        //     ->setCity($faker->city())
+        //     ->setCountry($faker->country())
+        //     ->setCreatedAt($faker->dateTimeImmutable());
 
-            $profile = (new Profile())->setPicture($faker->image())
-            ->setCoverPicture($faker->image())
-            ->setDescription($faker->text(60))
-            ->setCreatedAt($faker->dateTimeImmutable());
+        //     $profile = (new Profile())->setPicture($faker->image())
+        //     ->setCoverPicture($faker->image())
+        //     ->setDescription($faker->text(60))
+        //     ->setCreatedAt($faker->dateTimeImmutable());
 
-            $user->addAdress($address);
-            $user->setProfile($profile);
+        //     $user->addAdress($address);
+        //     $user->setProfile($profile);
 
-            $users[] = $user;
+        //     $users[] = $user;
 
-            $manager->persist($address);
-            $manager->persist($profile);
-            $manager->persist($user);
-        }
+        //     $manager->persist($address);
+        //     $manager->persist($profile);
+        //     $manager->persist($user);
+        // }
 
-        $categories = [];
+        // $categories = [];
 
-        for ($i=0; $i <10 ; $i++) { 
+        $names = [
+            "Developpement",
+            "SEO Réferencement naturel",
+            "Design",
+            "Système et réseaux",
+            "E-Marketing",
+            "Gestion de projet"
+        ];
 
-            $category = (new Category())->setName($faker->description(30))
-            ->setDescription($faker->description(60))
+        for ($i=0; $i < count($names) ; $i++) { 
+
+            $category = (new Category())->setName($names[$i])
+            ->setDescription("Description de : ".$names[$i])
             ->setimageUrl($faker->image())
             ->setCreatedAt($faker->dateTimeImmutable());
 
-            $categories[] = $category;
+            // $categories[] = $category;
             $manager->persist($category);
         }
 
-        for ($i=0; $i <300 ; $i++) { 
+        // // for ($i=0; $i <300 ; $i++) { 
 
-            $article = (new Article())->setTitle($faker->description(30))
-            ->setContent($faker->text(5,10))
-            ->setImageUrl($faker->image())
-            ->setCreatedAt($faker->dateTimeImmutable())
-            ->setAuthor($users[rand(0,count($users)-1)])
-            ->addCategory($categories[rand(0, count($categories)-1)]);
+        // //     $article = (new Article())->setTitle($faker->description(30))
+        // //     ->setContent($faker->text(5,10))
+        // //     ->setImageUrl($faker->image())
+        // //     ->setCreatedAt($faker->dateTimeImmutable())
+        // //     ->setAuthor($users[rand(0,count($users)-1)])
+        // //     ->addCategory($categories[rand(0, count($categories)-1)]);
 
-            $manager->persist($article);
-        }
+        // //     $manager->persist($article);
+        // }
 
         $manager->flush();
     }

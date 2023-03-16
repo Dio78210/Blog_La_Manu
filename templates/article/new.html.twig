@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Article{% endblock %}
+
+{% block body %}
+
+    {{ include('article/_form.html.twig', {title: "Créer un nouvel article"}) }}
+
+    <a href="{{ path('app_article_index') }}"> Retour a la liste </a>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        $(document).ready(function(){
+            $('.choices_categories').select2();
+        })
+
+        // insertion de l'editeur de texte
+        ClassicEditor
+            .create(document.querySelector('#article_content' ))
+            .then(editor=> {
+                console.log(editor);
+            })
+            .catch(error => {
+                console.error(error)
+            });
+
+
+    </script>
+
+{% endblock %}
