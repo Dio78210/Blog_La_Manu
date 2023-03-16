@@ -3,11 +3,29 @@
 {% block title %}Edit Article{% endblock %}
 
 {% block body %}
-    <h1>Edit Article</h1>
 
-    {{ include('article/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('article/_form.html.twig', {'button_label': 'Modifier', title: "Editer un Article"}) }}
 
-    <a href="{{ path('app_article_index') }}">back to list</a>
+    <a href="{{ path('app_article_index') }}"> Retour a la liste </a>
+{% endblock %}
 
-    {{ include('article/_delete_form.html.twig') }}
+{% block javascripts %}
+    <script>
+        $(document).ready(function(){
+            $('.choices_categories').select2();
+        })
+
+        // insertion de l'editeur de texte
+        ClassicEditor
+            .create(document.querySelector('#article_content' ))
+            .then(editor=> {
+                console.log(editor);
+            })
+            .catch(error => {
+                console.error(error)
+            });
+
+
+    </script>
+
 {% endblock %}

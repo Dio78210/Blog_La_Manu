@@ -1,7 +1,32 @@
 {{ form_start(form) }}
-    {% if title is defined %}
-    <h2 class='title'>{{ title }}</h2>
-    {% endif %}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+{% if title is defined %}
+<h2 class='title'>{{ title }}</h2>
+{% endif %}
+
+{{ form_row(form.title) }}
+{{ form_row(form.content) }}
+
+<div class="flex">
+    <div>
+        {% if required is defined %}
+            {{form_row(form.imageFile,{attr:{required: required}})}}
+        {% else %}
+            {{form_row(form.imageFile)}}
+        {% endif %}
+    </div>
+
+    <div class="image-preview">
+        {% if not article.imageUrl == "" %}
+            <img src="{{article.imageUrl}}" alt="image de l'article: {{article.title}}">
+        {% endif %}
+    </div>
+</div>
+
+{{ form_row(form.category) }}
+
+
+<div class="flex">
+    <button class="btn">{{ button_label|default('Sauvegarder') }}</button>
+    <a href="{{path('app_home')}}" class="btn">Annuler</a>
+</div>
 {{ form_end(form) }}

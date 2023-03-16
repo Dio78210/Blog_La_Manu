@@ -50,3 +50,8 @@ form ul{
 form ul li{
     color: var(--main-danger)!important;
 }
+
+form .image-preview img{
+    width: 180px;
+    height: 150px;
+}

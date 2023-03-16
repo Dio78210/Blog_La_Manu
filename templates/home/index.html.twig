@@ -11,11 +11,75 @@ Blog La Manu
 
     <div class="slider">
         <div class="slider-content">
-            <h2>Bienvenue sur le blog La Manu</h2>
-            <p>Plusieurs article publié chaque jour !</p>
-            <a href="#articles" target="_blank">
-                <button class="btn">consulter</button>
-            </a>
+            <div class="slideshow">
+                <input type="radio" name="slideshow" id="slide_img1" class="slide">
+                <input type="radio" name="slideshow" id="slide_img2" class="slide">
+                <input type="radio" name="slideshow" id="slide_img3" class="slide">
+                <input type="radio" name="slideshow" id="slide_img4" class="slide">
+                <input type="radio" name="slideshow" id="play_img1" checked>
+                <input type="radio" name="slideshow" id="pause_img1" class="pause">
+                <input type="radio" name="slideshow" id="pause_img2" class="pause">
+                <input type="radio" name="slideshow" id="pause_img3" class="pause">
+                <input type="radio" name="slideshow" id="pause_img4" class="pause">
+                <ul>
+                    <img src="/assets/images/slider.jpg" alt="image slider">
+
+                    <li class="img1">
+                        <img src="/assets/images/developpeur-web.webp" alt="image slider1">
+                    </li>
+
+                    <li class="img2">
+                        <img src="/assets/images/gestion.jpg" alt="image slider2">
+                    </li>
+
+                    <li class="img3">
+                        <img src="/assets/images/marketing.jpg" alt="image slider3">
+                    </li>
+
+                    <li class="img4">
+                        <img src="/assets/images/SystemeReseau.jpg" alt="image slider4">
+                    </li>
+
+                </ul>
+
+                <div class="play_pause">
+                    <label for="play_img1" class="play"></label>
+                    <label for="pause_img1" class="pause img1"></label>
+                    <label for="pause_img2" class="pause img2"></label>
+                    <label for="pause_img3" class="pause img3"></label>
+                    <label for="pause_img4" class="pause img4"></label>
+                </div>
+
+                <div class="precedent">
+                    <label for="slide_img1" class="img1"></label>
+                    <label for="slide_img2" class="img2"></label>
+                    <label for="slide_img3" class="img3"></label>
+                    <label for="slide_img4" class="img4"></label>
+                </div>
+
+                <div class="suivant">
+                    <label for="slide_img1" class="img1"></label>
+                    <label for="slide_img2" class="img2"></label>
+                    <label for="slide_img3" class="img3"></label>
+                    <label for="slide_img4" class="img4"></label>
+                </div>
+
+                <div class="puces">
+                    <label for="slide_img1" class="img1">
+                        <span class="actif_puces"></span>
+                    </label>
+                    <label for="slide_img2" class="img2">
+                        <span class="actif_puces"></span>
+                    </label>
+                    <label for="slide_img3" class="img3">
+                        <span class="actif_puces"></span>
+                    </label>
+                    <label for="slide_img4" class="img4">
+                        <span class="actif_puces"></span>
+                    </label>
+                </div>
+
+            </div>
         </div>
     </div>
 

@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Throwable;
 
 class UploadFile extends AbstractController{
 
@@ -28,6 +29,30 @@ class UploadFile extends AbstractController{
         $file->move($this->getParameter('image_dir'),$filename);
 
         return '/assets/images/articles/'.$filename;
+    }
+
+
+    public function updateFile($file, $old_file){
+
+        //sauvegarder le fichier recu avant eventuel suppression de l'ancien
+        $file_url = $this->saveFile($file);
+
+        //nous allons passer par un TRY/CATCH afin de pouvoir gerer les anomalies
+        //--TRY--l'ancien fichier suprimé manuellement dans le dossier public/article
+        try{
+            //supprime le vieux fichier de mon chemin
+            unlink($this->getParameter('static_dir').$old_file);
+
+        }catch(Throwable $th){//si une exeption est levée je ne fais rien je passe simplement a la suite
+            //throw $th
+        }
+
+        return $file_url;
+
+
+
+
+
     }
 
 

@@ -16,8 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * @Route("/account")
  */
-class ArticleController extends AbstractController
-{
+class ArticleController extends AbstractController{
 
     private $uploadFile;
     private $em;
@@ -104,9 +103,22 @@ class ArticleController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $articleRepository->add($article, true);
 
-            return $this->redirectToRoute('app_article_index', [], Response::HTTP_SEE_OTHER);
+            $article->setUpdatedAt(new \DateTimeImmutable());//enregistrer la date de mise a jour
+
+            $file = $form["imageFile"]->getData();
+
+            if ($file) {//si nous avons un fichier
+                $file_url = $this->uploadFile->updateFile($file, $article->getImageUrl());//mis a jour de l'image
+
+                $article->setImageUrl($file_url);
+            }
+
+            $this->em->persist($article);
+            $this->em->flush();
+
+
+            return $this->redirectToRoute('app_single_article', ["slug"=>$article->getSlug()], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('article/edit.html.twig', [

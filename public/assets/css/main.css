@@ -7,6 +7,7 @@
 @import url("./components/form.css");
 @import url("./components/alert.css");
 @import url("./components/editor.css");
-
+@import url("./components/table.css");
+@import url("./components/animate.css");
 
 @import url("./librairies/select.css");

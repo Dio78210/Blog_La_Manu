@@ -3,43 +3,69 @@
 {% block title %}Article index{% endblock %}
 
 {% block body %}
-    <h1>Article index</h1>
+<h1 class="title">Mes Article</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Slug</th>
-                <th>Content</th>
-                <th>ImageUrl</th>
-                <th>CreatedAt</th>
-                <th>UpdatedAt</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
+<div class="flex mb-10">
+    <a class="btn" href="{{ path('app_article_new') }}">Creer nouveau</a>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            {# <th>Slug</th> #}
+            <th>Content</th>
+            <th>ImageUrl</th>
+            <th>CreatedAt</th>
+            {# <th>UpdatedAt</th> #}
+            <th>actions</th>
+        </tr>
+    </thead>
+    <tbody>
         {% for article in articles %}
-            <tr>
-                <td>{{ article.id }}</td>
-                <td>{{ article.title }}</td>
-                <td>{{ article.slug }}</td>
-                <td>{{ article.content }}</td>
-                <td>{{ article.imageUrl }}</td>
-                <td>{{ article.createdAt ? article.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ article.updatedAt ? article.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('app_article_show', {'id': article.id}) }}">show</a>
-                    <a href="{{ path('app_article_edit', {'id': article.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="8">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+        <tr>
+            <td>{{ article.id }}</td>
+            <td>{{ article.title }}</td>
+            <!-- <td>{{ article.slug }}</td> -->
+            <td class="td-content">
+                <div class="article-content">
+                    {{ article.content | raw }}
+                </div>
+            </td>
 
-    <a href="{{ path('app_article_new') }}">Create new</a>
+            <td>
+                <img src="{{ article.imageUrl }}" alt="image de {{ article.title }}">
+            </td>
+
+            <td>{{ article.createdAt ? article.fromNow : '' }}</td>
+            <!-- <td>{{ article.updatedAt ? article.updatedAt|date('Y-m-d H:i:s') : '' }}</td> -->
+            <td>
+                <div class="flex">
+                    <a class="btn" href="{{ path('app_article_show', {'id': article.id}) }}">Voir</a>
+                    <a class="btn" href="{{ path('app_article_edit', {'id': article.id}) }}">Editer</a>
+                </div>
+            </td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="8">no records found</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+{% endblock %}
+
+{% block javascripts %}
+
+<script>
+    $('.article-content').readmore({
+        speed:75,
+        moreLink:'<a href="#" class="btn btn-read"> Lire plus </a>',
+        lessLink:'<a href="#" class="btn btn-read"> Lire moins </a>'
+    });
+</script>
+
 {% endblock %}

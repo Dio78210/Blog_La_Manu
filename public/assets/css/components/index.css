@@ -64,16 +64,24 @@ a{
 }
 
 .btn{
+    margin: 10px;
     padding: 12px;
     font-size: 1.2rem;
     color: white;
     cursor: pointer;
     border: none;
-    width: 100%;
+    text-align: center;
     box-shadow: 0 2px 25px #1d1d1d;
     background: var(--main-gradient);
 }
 
+form .btn{
+    width: 100%;
+}
+
+.mb-10{
+    margin-bottom: 10px;
+}
 
 footer{
     background: var(--main-gradient);
