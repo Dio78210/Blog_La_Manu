@@ -8,52 +8,56 @@
 <div class="flex mb-10">
     <a class="btn" href="{{ path('app_article_new') }}">Creer nouveau</a>
 </div>
+<div class="table-container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                {# <th>Slug</th> #}
+                <th>Content</th>
+                <th>ImageUrl</th>
+                <th>CreatedAt</th>
+                {# <th>UpdatedAt</th> #}
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for article in articles %}
+            <tr>
+                <td>{{ article.id }}</td>
+                <td>{{ article.title }}</td>
+                <!-- <td>{{ article.slug }}</td> -->
+                <td class="td-content">
+                    <div class="article-content">
+                        {{ article.content | raw }}
+                    </div>
+                </td>
+    
+                <td>
+                    <img src="{{ article.imageUrl }}" alt="image de {{ article.title }}">
+                </td>
+    
+                <td>{{ article.createdAt ? article.fromNow : '' }}</td>
+                <!-- <td>{{ article.updatedAt ? article.updatedAt|date('Y-m-d H:i:s') : '' }}</td> -->
+                <td>
+                    <div class="flex">
+                        <a class="btn" href="/article/{{article.slug}}" class="article-item">Voir</a>
+                        <a class="btn" href="{{ path('app_article_edit', {'id': article.id}) }}">Editer</a>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>Id</th>
-            <th>Title</th>
-            {# <th>Slug</th> #}
-            <th>Content</th>
-            <th>ImageUrl</th>
-            <th>CreatedAt</th>
-            {# <th>UpdatedAt</th> #}
-            <th>actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for article in articles %}
-        <tr>
-            <td>{{ article.id }}</td>
-            <td>{{ article.title }}</td>
-            <!-- <td>{{ article.slug }}</td> -->
-            <td class="td-content">
-                <div class="article-content">
-                    {{ article.content | raw }}
-                </div>
-            </td>
+                        {{include('article/_delete_form.html.twig')}}
+                    </div>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
 
-            <td>
-                <img src="{{ article.imageUrl }}" alt="image de {{ article.title }}">
-            </td>
-
-            <td>{{ article.createdAt ? article.fromNow : '' }}</td>
-            <!-- <td>{{ article.updatedAt ? article.updatedAt|date('Y-m-d H:i:s') : '' }}</td> -->
-            <td>
-                <div class="flex">
-                    <a class="btn" href="{{ path('app_article_show', {'id': article.id}) }}">Voir</a>
-                    <a class="btn" href="{{ path('app_article_edit', {'id': article.id}) }}">Editer</a>
-                </div>
-            </td>
-        </tr>
-        {% else %}
-        <tr>
-            <td colspan="8">no records found</td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
 
 
 {% endblock %}

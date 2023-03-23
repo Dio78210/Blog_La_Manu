@@ -1,0 +1,21 @@
+{# Hériter une vue #}
+{% extends 'base.html.twig' %}
+
+{# surcharger des block. modifier ce qu'il y as pas defaut #}
+
+{% block title %}
+Blog La Manu
+{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+            <h1>{{ about.title }}</h1>
+        <div class="flex">
+            <img src="{{ about.imageURL }}" width="300" height="300" alt="image a propos">
+
+            <p>{{ about.content }}</p>
+        </div>
+    </div>
+
+{% endblock %}

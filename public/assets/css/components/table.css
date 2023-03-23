@@ -34,3 +34,7 @@ table td a.btn-read{
     float: right;
     margin: 10px 0;
 }
+
+table td form{
+    margin: 0 !important;
+}

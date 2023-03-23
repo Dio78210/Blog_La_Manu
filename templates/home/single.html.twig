@@ -10,8 +10,8 @@ Blog La Manu
 {% block body %}
 
 <div class="single-article">
-        <div class="article-image" style="background-image: url({{article.imageUrl}})">
-            
+        <div class="article-image">
+            <img src={{article.imageUrl}} alt="Image de l'article : {{article.title }}">
         </div>
         <div class="article-details flex">
             <div class="article-author-details">

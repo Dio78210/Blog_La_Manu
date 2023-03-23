@@ -1,0 +1,34 @@
+{{ form_start(form) }}
+
+{% if title is defined %}
+<h2 class='title'>{{ title }}</h2>
+{% endif %}
+
+{{ form_row(form.title) }}
+{{ form_row(form.content) }}
+
+
+<div class="flex">
+    <div>
+        {% if required is defined %}
+            {{form_row(form.imageFile,{attr:{required: required}})}}
+        {% else %}
+            {{form_row(form.imageFile)}}
+        {% endif %}
+    </div>
+
+    <div class="image-preview">
+        {% if not about.imageUrl == "" %}
+            <img src="{{about.imageUrl}}" alt="image a propos: {{about.title}}">
+        {% endif %}
+    </div>
+</div>
+
+
+
+<div class="flex">
+    <button class="btn">{{ button_label|default('Sauvegarder') }}</button>
+    <a href="{{path('app_home')}}" class="btn">Annuler</a>
+</div>
+
+{{ form_end(form) }}

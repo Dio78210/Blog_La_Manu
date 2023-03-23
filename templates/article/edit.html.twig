@@ -13,6 +13,18 @@
     <script>
         $(document).ready(function(){
             $('.choices_categories').select2();
+
+            $("input[type='file']").change(function(){
+                var file = $(this).get(0).files[0]
+                if(file){
+                    var reader = new FileReader();
+                    reader.onload = function(){
+                        var img = `<img src= '${reader.result}' alt="Preview image"/>`//element recuperé
+                        $(".image-preview").html(img)// endroit d'insertion de l'element
+                    }
+                    reader.readAsDataURL(file);//donnée sous forme URL
+                }
+            })
         })
 
         // insertion de l'editeur de texte

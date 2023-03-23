@@ -118,7 +118,7 @@ class ArticleController extends AbstractController{
             $this->em->flush();
 
 
-            return $this->redirectToRoute('app_single_article', ["slug"=>$article->getSlug()], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_single_article', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('article/edit.html.twig', [
