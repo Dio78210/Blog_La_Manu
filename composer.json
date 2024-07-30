@@ -13,7 +13,7 @@
         "doctrine/orm": "^2.14",
         "espero-soft/dateformat": "dev-master",
         "espero-soft/faker": "dev-master",
-        "fzaninotto/faker": "^1.9",
+        "fakerphp/faker": "^1.20",
         "sensio/framework-extra-bundle": "^6.2",
         "symfony/console": "6.3",
         "symfony/dotenv": "6.3",
@@ -25,7 +25,9 @@
         "symfony/mime": "6.3",
         "symfony/runtime": "6.3",
         "symfony/security-bundle": "6.3",
+        "symfony/security-http": "^6.3",
         "symfony/twig-bundle": "6.3",
+        "symfony/twig-bridge": "^6.3",
         "symfony/validator": "6.3",
         "symfony/yaml": "6.3",
         "twig/extra-bundle": "^2.12|^3.0",
@@ -58,18 +60,6 @@
         "symfony/polyfill-ctype": "*",
         "symfony/polyfill-iconv": "*",
         "symfony/polyfill-php72": "*"
-    },
-    "scripts": {
-        "auto-scripts": {
-            "cache:clear": "symfony-cmd",
-            "assets:install %PUBLIC_DIR%": "symfony-cmd"
-        },
-        "post-install-cmd": [
-            "@auto-scripts"
-        ],
-        "post-update-cmd": [
-            "@auto-scripts"
-        ]
     },
     "conflict": {
         "symfony/symfony": "*"
